@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código Morado — Taller de Programación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<style>
+  :root{
+    --violeta-profundo:#3B1466;
+    --morado-vivido:#7C3AED;
+    --magenta:#C026D3;
+    --rosa-electrico:#EC4899;
+    --lavanda-suave:#F3E8FF;
+    --blanco-papel:#FFFDFB;
+    --tinta:#241436;
+    --linea:rgba(124,58,237,0.22);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--blanco-papel);
+    color:var(--tinta);
+    line-height:1.55;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(255,253,251,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-brand{font-family:'Baloo 2'; font-weight:800; font-size:19px; color:var(--violeta-profundo);}
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    font-size:14px; font-weight:600; color:var(--morado-vivido); text-decoration:none;
+  }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:110px 32px 80px;
+    background:linear-gradient(120deg,var(--violeta-profundo) 0%, var(--morado-vivido) 45%, var(--rosa-electrico) 100%);
+    color:var(--blanco-papel);
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero::before{
+    content:"</>";
+    position:absolute;
+    font-family:'Baloo 2'; font-weight:800; font-size:300px;
+    right:-30px; top:-70px; color:rgba(255,255,255,0.06); line-height:1;
+  }
+  .hero::after{
+    content:"{ }";
+    position:absolute;
+    font-family:'Baloo 2'; font-weight:800; font-size:220px;
+    left:-40px; bottom:-90px; color:rgba(255,255,255,0.06); line-height:1;
+  }
+  .hero-inner{position:relative; max-width:640px; margin:0 auto;}
+  .hero h1{font-family:'Baloo 2'; font-weight:800; font-size:58px; line-height:1.05;}
+  .hero p{margin-top:16px; font-size:19px; color:rgba(255,255,255,0.9);}
+
+  /* SECTION SHELL */
+  section{padding:70px 0; border-bottom:1px solid var(--linea);}
+  .sec-head{margin-bottom:36px; text-align:center;}
+  .sec-num{
+    display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:13px;
+    color:var(--rosa-electrico); background:var(--lavanda-suave);
+    padding:4px 12px; border-radius:20px; margin-bottom:14px;
+  }
+  .sec-head h2{font-family:'Baloo 2'; font-weight:700; font-size:32px; color:var(--violeta-profundo);}
+  .sec-head p{color:#6B5A80; font-size:15px; margin-top:10px; max-width:520px; margin-left:auto; margin-right:auto;}
+
+  .connector{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    color:var(--morado-vivido); margin:0 auto 30px; width:fit-content;
+  }
+  .connector .dot{width:8px; height:8px; border-radius:50%; background:var(--morado-vivido);}
+  .connector .line{width:60px; height:2px; background:var(--linea);}
+
+  /* BLOQUE 1 — OBJETIVOS */
+  .objetivos-list{list-style:none; max-width:640px; margin:0 auto; display:flex; flex-direction:column; gap:4px;}
+  .objetivos-list li{
+    display:flex; gap:16px; align-items:flex-start;
+    padding:18px 4px; border-bottom:1px dashed var(--linea);
+    font-size:16px;
+  }
+  .objetivos-list li:last-child{border-bottom:none;}
+  .obj-icon{
+    font-family:'Baloo 2'; font-weight:800; font-size:15px; color:var(--rosa-electrico);
+    flex-shrink:0; width:26px; height:26px; border-radius:8px;
+    background:var(--lavanda-suave); display:flex; align-items:center; justify-content:center;
+  }
+
+  /* BLOQUE 2 — KAHOOT */
+  .kahoot-block{text-align:center;}
+  .kahoot-title{font-family:'Baloo 2'; font-weight:800; font-size:52px; color:var(--violeta-profundo);}
+  .kahoot-sub{color:#6B5A80; font-size:15px; margin-top:10px; margin-bottom:30px;}
+  .btn-primary{
+    display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:16px;
+    color:#fff; padding:16px 46px; border-radius:16px; text-decoration:none;
+    background:linear-gradient(90deg,var(--morado-vivido),var(--rosa-electrico));
+  }
+  .btn-secondary{
+    display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:14px;
+    color:var(--morado-vivido); padding:12px 24px; border-radius:14px; text-decoration:none;
+    border:2px solid var(--morado-vivido); margin:6px;
+  }
+  .btn-secondary.active{background:var(--morado-vivido); color:#fff;}
+
+  /* BLOQUE 3 — SCRATCH */
+  .scratch-grid{display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:stretch;}
+  .scratch-col{
+    background:var(--lavanda-suave); border-radius:22px; padding:34px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  }
+  .scratch-col h3{font-family:'Baloo 2'; font-weight:700; font-size:18px; color:var(--violeta-profundo); margin-bottom:22px;}
+  .niveles{display:flex; flex-direction:column; gap:14px; width:100%; max-width:260px;}
+  .cat-wrap{width:220px; height:220px;}
+
+  /* BLOQUE 4 — RECURSERO */
+  .recursero-sub{font-family:'Baloo 2'; font-weight:700; font-size:19px; color:var(--violeta-profundo); margin:0 0 18px;}
+  .uni-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:56px;}
+  .uni-card{
+    background:var(--blanco-papel); border:1px solid var(--linea); border-radius:18px; padding:22px 24px;
+  }
+  .uni-card h4{font-family:'Baloo 2'; font-size:16px; color:var(--violeta-profundo); margin-bottom:6px;}
+  .uni-card .uni-loc{font-size:12px; color:var(--rosa-electrico); font-weight:600; margin-bottom:10px;}
+  .uni-card p{font-size:13.5px; color:#5A4B6B;}
+  .uni-card .beca-tag{
+    display:inline-block; margin-top:10px; font-size:12px; font-weight:600;
+    color:var(--morado-vivido); background:var(--lavanda-suave); padding:4px 10px; border-radius:12px;
+  }
+
+  .cursos-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:56px;}
+  .curso-card{
+    border:2px solid var(--morado-vivido); border-radius:18px; padding:22px 24px;
+  }
+  .curso-card h4{font-family:'Baloo 2'; font-size:15px; color:var(--morado-vivido); margin-bottom:6px;}
+  .curso-card p{font-size:13.5px; color:#5A4B6B;}
+  .curso-card a{font-size:12.5px; font-weight:600; color:var(--rosa-electrico); text-decoration:none;}
+
+  .beca-info{
+    background:linear-gradient(90deg,var(--violeta-profundo),var(--rosa-electrico));
+    color:#fff; border-radius:20px; padding:26px 30px; margin-bottom:56px;
+    display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+  }
+  .beca-info .beca-icon{font-family:'Baloo 2'; font-weight:800; font-size:34px; flex-shrink:0;}
+  .beca-info p{font-size:14px; color:rgba(255,255,255,0.92); max-width:640px;}
+  .beca-info strong{font-family:'Baloo 2';}
+
+  #map{
+    height:380px; width:100%; border-radius:20px; border:1px solid var(--linea);
+    filter:saturate(0.9);
+  }
+  .map-note{font-size:12.5px; color:#8B7A9B; margin-top:12px; text-align:center;}
+
+  footer{padding:50px 0; text-align:center; color:#8B7A9B; font-size:13px;}
+
+  @media (max-width:720px){
+    .hero h1{font-size:40px;}
+    .scratch-grid{grid-template-columns:1fr;}
+    .uni-grid, .cursos-grid{grid-template-columns:1fr;}
+    .nav-links{gap:16px;}
+    .kahoot-title{font-size:38px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Código Morado</div>
+    <ul class="nav-links">
+      <li><a href="#objetivos">Objetivos</a></li>
+      <li><a href="#kahoot">Kahoot</a></li>
+      <li><a href="#scratch">Scratch</a></li>
+      <li><a href="#recursero">Recursero</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Código Morado</h1>
+    <p>Chicas programando futuro</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- BLOQUE 1 — OBJETIVOS -->
+  <section id="objetivos">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2>Objetivos del taller</h2>
+      <p>Qué nos proponemos lograr juntas durante el encuentro. Editá esta lista según el contenido definitivo del taller.</p>
+    </div>
+    <ul class="objetivos-list">
+      <li><span class="obj-icon">&lt;/&gt;</span>Perder el miedo a programar y animarse a crear el primer proyecto propio.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Entender la lógica de la programación jugando, sin necesidad de experiencia previa.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Conocer herramientas reales que usan programadoras: Scratch, cuestionarios interactivos y más.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Descubrir carreras, becas y cursos para seguir formándose en tecnología.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Conectar con otras chicas que están dando sus primeros pasos en el mundo tech.</li>
+    </ul>
+  </section>
+
+  <!-- BLOQUE 2 — KAHOOT -->
+  <section id="kahoot">
+    <div class="kahoot-block">
+      <div class="connector"><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+      <div class="kahoot-title">Kahoot</div>
+      <p class="kahoot-sub">Poné a prueba lo que aprendiste en el taller</p>
+      <!-- TODO: reemplazar href="#" por el link real del Kahoot -->
+      <a class="btn-primary" href="#" target="_blank" rel="noopener">Jugar</a>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3 — SCRATCH -->
+  <section id="scratch">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2>Jugando con Scratch</h2>
+      <p>Elegí un nivel de dificultad y programá tu propio proyecto bloque a bloque.</p>
+    </div>
+    <div class="scratch-grid">
+      <div class="scratch-col">
+        <h3>Elegí tu nivel</h3>
+        <div class="niveles">
+          <!-- TODO: reemplazar cada href="#" por el link del proyecto Scratch según nivel -->
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Fácil</a>
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Intermedio</a>
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Difícil</a>
+        </div>
+      </div>
+      <div class="scratch-col">
+        <h3>Mascota Scratch</h3>
+        <!-- Placeholder ilustrativo: reemplazar por el asset oficial del gato de Scratch -->
+        <div class="cat-wrap">
+          <svg viewBox="0 0 200 200" width="100%" height="100%">
+            <ellipse cx="100" cy="125" rx="55" ry="45" fill="#F5A623"/>
+            <circle cx="100" cy="78" r="46" fill="#F5A623"/>
+            <polygon points="62,50 78,20 90,58" fill="#F5A623"/>
+            <polygon points="138,50 122,20 110,58" fill="#F5A623"/>
+            <polygon points="66,48 78,28 86,56" fill="#FFD9A0"/>
+            <polygon points="134,48 122,28 114,56" fill="#FFD9A0"/>
+            <circle cx="82" cy="76" r="8" fill="#241434"/>
+            <circle cx="118" cy="76" r="8" fill="#241434"/>
+            <ellipse cx="100" cy="94" rx="6" ry="4" fill="#241434"/>
+            <path d="M60,120 Q40,140 55,160" stroke="#F5A623" stroke-width="14" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 4 — RECURSERO DIGITAL -->
+  <section id="recursero" style="border-bottom:none;">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2>Recursero digital</h2>
+      <p>Universidades con carreras de tecnología, becas y cursos gratuitos para seguir el camino después del taller.</p>
+    </div>
+
+    <div class="beca-info">
+      <span class="beca-icon">{ }</span>
+      <p><strong>Becas Progresar Superior 2026:</strong> inscripción abierta del 18 de agosto al 11 de septiembre de 2026 a través de la app Mi Argentina, para estudiar cualquier carrera universitaria, incluidas las tecnológicas.</p>
+    </div>
+
+    <h3 class="recursero-sub">Universidades con carreras en tecnología</h3>
+    <div class="uni-grid">
+      <div class="uni-card">
+        <h4>UNGS — Universidad Nacional de General Sarmiento</h4>
+        <div class="uni-loc">Los Polvorines</div>
+        <p>Tecnicatura Universitaria en Programación Informática y Licenciatura en Sistemas.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UTN — Facultad Regional Buenos Aires</h4>
+        <div class="uni-loc">Almagro, CABA</div>
+        <p>Ingeniería en Sistemas de Información y tecnicaturas en TICs.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UBA — Facultad de Ingeniería (FIUBA)</h4>
+        <div class="uni-loc">San Telmo, CABA</div>
+        <p>Ingeniería en Informática e Ingeniería en Computación.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UNLP — Facultad de Informática</h4>
+        <div class="uni-loc">La Plata</div>
+        <p>Licenciatura en Informática e Ingeniería en Computación.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UNQ — Universidad Nacional de Quilmes</h4>
+        <div class="uni-loc">Bernal</div>
+        <p>Ingeniería en Informática y Tecnicatura en Programación Informática.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+    </div>
+
+    <h3 class="recursero-sub">Cursos y capacitaciones gratuitas</h3>
+    <div class="cursos-grid">
+      <div class="curso-card">
+        <h4>Chicas Digit@lers (CESSI)</h4>
+        <p>Talleres gratuitos y 100% online pensados para adolescentes, sin conocimientos previos: programación por bloques, apps y páginas web.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Codo a Codo</h4>
+        <p>Formación gratuita en programación Full Stack del Gobierno de la Ciudad y la Provincia de Buenos Aires, con cupos reservados para mujeres.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Argentina Programa</h4>
+        <p>Cursos gratuitos con certificación oficial del Ministerio de Economía de la Nación en programación y habilidades digitales.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Google Activate</h4>
+        <p>Certificaciones digitales gratuitas de Google en habilidades de programación, datos y marketing digital.</p>
+      </div>
+    </div>
+
+    <h3 class="recursero-sub">Mapa de universidades</h3>
+    <div id="map"></div>
+    <p class="map-note">Ubicaciones aproximadas — verificar la dirección exacta de cada sede antes de publicar.</p>
+  </section>
+
+</div>
+
+<footer>Código Morado · Taller de Programación · Chicas programando futuro</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+  const universidades = [
+    { nombre: "UNGS — Universidad Nacional de General Sarmiento", carrera: "Tecnicatura en Programación Informática / Lic. en Sistemas", lat: -34.4756, lng: -58.7217 },
+    { nombre: "UTN — Facultad Regional Buenos Aires", carrera: "Ingeniería en Sistemas de Información", lat: -34.5985, lng: -58.4212 },
+    { nombre: "UBA — Facultad de Ingeniería (FIUBA)", carrera: "Ingeniería en Informática / Computación", lat: -34.6165, lng: -58.3697 },
+    { nombre: "UNLP — Facultad de Informática", carrera: "Lic. en Informática / Ing. en Computación", lat: -34.9037, lng: -57.9414 },
+    { nombre: "UNQ — Universidad Nacional de Quilmes", carrera: "Ing. en Informática / Tecnicatura en Programación", lat: -34.7057, lng: -58.2894 }
+  ];
+
+  const map = L.map('map', { scrollWheelZoom: false }).setView([-34.66, -58.55], 9);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  const purpleIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:16px;height:16px;border-radius:50%;background:#7C3AED;border:3px solid #FFFDFB;box-shadow:0 0 0 2px #7C3AED;"></div>',
+    iconSize: [16,16],
+    iconAnchor: [8,8]
+  });
+
+  universidades.forEach(u => {
+    L.marker([u.lat, u.lng], { icon: purpleIcon })
+      .addTo(map)
+      .bindPopup(`<strong>${u.nombre}</strong><br>${u.carrera}`);
+  });
+</script>
+</body>
+</html>
