@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Código Morado — Moodboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violeta-profundo:#3B1466;
+    --morado-vivido:#7C3AED;
+    --magenta:#C026D3;
+    --rosa-electrico:#EC4899;
+    --lavanda-suave:#F3E8FF;
+    --blanco-papel:#FFFDFB;
+    --tinta:#241436;
+    --linea:rgba(124,58,237,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--blanco-papel);
+    color:var(--tinta);
+    line-height:1.5;
+  }
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px 120px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:90px 32px 70px;
+    background:linear-gradient(120deg,var(--violeta-profundo) 0%, var(--morado-vivido) 45%, var(--rosa-electrico) 100%);
+    color:var(--blanco-papel);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"</>";
+    position:absolute;
+    font-family:'Baloo 2';
+    font-weight:800;
+    font-size:340px;
+    right:-40px;
+    top:-90px;
+    color:rgba(255,255,255,0.06);
+    line-height:1;
+  }
+  .hero-inner{max-width:1100px; margin:0 auto; position:relative;}
+  .eyebrow{
+    font-family:'Inter';
+    font-size:14px;
+    letter-spacing:0.02em;
+    color:rgba(255,255,255,0.75);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Baloo 2';
+    font-weight:800;
+    font-size:56px;
+    line-height:1.05;
+    max-width:680px;
+  }
+  .hero p{
+    margin-top:18px;
+    max-width:520px;
+    font-size:18px;
+    color:rgba(255,255,255,0.88);
+  }
+
+  /* SECTION HEADERS */
+  section{padding:64px 0; border-bottom:1px solid var(--linea);}
+  .sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:36px;}
+  .sec-num{
+    font-family:'Baloo 2'; font-weight:700; font-size:15px;
+    color:var(--rosa-electrico);
+    background:var(--lavanda-suave);
+    padding:4px 12px;
+    border-radius:20px;
+  }
+  .sec-head h2{
+    font-family:'Baloo 2'; font-weight:700; font-size:30px; color:var(--violeta-profundo);
+  }
+  .sec-sub{color:#6B5A80; font-size:15px; margin-top:-24px; margin-bottom:32px; max-width:640px;}
+
+  /* PALETTE */
+  .palette{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}
+  .swatch{border-radius:16px; overflow:hidden; border:1px solid var(--linea);}
+  .swatch-color{height:110px;}
+  .swatch-label{padding:12px 14px; background:var(--blanco-papel);}
+  .swatch-name{font-weight:600; font-size:13px;}
+  .swatch-hex{font-size:12px; color:#8B7A9B; margin-top:2px;}
+
+  /* TYPE */
+  .type-card{
+    background:var(--lavanda-suave);
+    border-radius:20px;
+    padding:36px 40px;
+    margin-bottom:22px;
+  }
+  .type-role{font-size:13px; color:var(--morado-vivido); font-weight:600; margin-bottom:6px;}
+  .type-display{font-family:'Baloo 2'; font-weight:800; font-size:44px; color:var(--violeta-profundo); line-height:1.1;}
+  .type-body-sample{font-family:'Inter'; font-size:17px; max-width:560px; margin-top:14px; color:var(--tinta);}
+  .type-meta{margin-top:14px; font-size:13px; color:#8B7A9B;}
+  .logo-note{
+    display:flex; align-items:center; gap:18px; margin-top:22px;
+    padding-top:22px; border-top:1px dashed var(--linea);
+  }
+  .logo-sample{
+    font-family:'Caveat'; font-weight:700; font-size:38px;
+    background:linear-gradient(90deg,var(--violeta-profundo),var(--rosa-electrico));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .logo-note p{font-size:14px; color:#6B5A80; max-width:420px;}
+
+  /* MOTIFS */
+  .motif-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .motif-card{
+    background:var(--blanco-papel); border:1px solid var(--linea);
+    border-radius:18px; padding:28px; text-align:center;
+  }
+  .motif-icon{font-family:'Baloo 2'; font-weight:800; font-size:40px; color:var(--rosa-electrico); margin-bottom:10px;}
+  .motif-card h3{font-family:'Baloo 2'; font-size:16px; color:var(--violeta-profundo); margin-bottom:6px;}
+  .motif-card p{font-size:13px; color:#6B5A80;}
+
+  .circuit-strip{
+    height:60px; margin-top:28px;
+    background-image:
+      radial-gradient(circle, var(--morado-vivido) 3px, transparent 3px),
+      linear-gradient(90deg, var(--linea) 1px, transparent 1px);
+    background-size: 120px 60px, 20px 60px;
+    background-position: 0 30px, 0 0;
+    border-radius:12px;
+    background-color: var(--lavanda-suave);
+  }
+
+  /* UI COMPONENTS */
+  .ui-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .ui-card{
+    background:var(--blanco-papel); border:1px solid var(--linea);
+    border-radius:20px; padding:30px;
+  }
+  .ui-label{font-size:12px; color:var(--morado-vivido); font-weight:600; margin-bottom:16px; letter-spacing:.02em;}
+  .btn-primary{
+    display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:15px;
+    color:#fff; padding:13px 26px; border-radius:14px;
+    background:linear-gradient(90deg,var(--morado-vivido),var(--rosa-electrico));
+  }
+  .btn-ghost{
+    display:inline-block; font-family:'Baloo 2'; font-weight:700; font-size:15px;
+    color:var(--morado-vivido); padding:12px 24px; border-radius:14px;
+    border:2px solid var(--morado-vivido); margin-left:12px;
+  }
+  .chip{
+    display:inline-block; background:var(--lavanda-suave); color:var(--violeta-profundo);
+    font-size:13px; font-weight:600; padding:6px 14px; border-radius:20px; margin-right:8px;
+  }
+  .badge-repro{
+    border-radius:18px; border:2px solid var(--morado-vivido); overflow:hidden;
+  }
+  .badge-repro-top{
+    background:linear-gradient(90deg,var(--violeta-profundo),var(--rosa-electrico));
+    color:#fff; text-align:center; padding:14px; font-family:'Baloo 2'; font-weight:700;
+  }
+  .badge-repro-body{padding:20px;}
+  .name-field{
+    border:2px solid var(--morado-vivido); border-radius:12px;
+    padding:12px 16px; color:var(--morado-vivido); font-family:'Baloo 2'; font-weight:600;
+    font-size:15px; margin-top:10px;
+  }
+
+  /* TONE */
+  .tone-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .tone-col h3{font-family:'Baloo 2'; font-size:16px; margin-bottom:14px;}
+  .tone-col.si h3{color:#0F9D58;}
+  .tone-col.no h3{color:#D93025;}
+  .tone-col ul{list-style:none;}
+  .tone-col li{
+    font-size:14px; padding:10px 0 10px 22px; position:relative; color:#4A3B5C;
+    border-bottom:1px solid var(--linea);
+  }
+  .tone-col.si li::before{content:"✓"; position:absolute; left:0; color:#0F9D58; font-weight:700;}
+  .tone-col.no li::before{content:"✕"; position:absolute; left:0; color:#D93025; font-weight:700;}
+
+  footer{padding:50px 0 0; text-align:center; color:#8B7A9B; font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">MOODBOARD DE IDENTIDAD VISUAL</div>
+    <h1>Código Morado</h1>
+    <p>Referencias de color, tipografía, iconografía y tono para construir el one-page del taller. Chicas programando futuro.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><h2>Paleta de color</h2></div>
+    <p class="sec-sub">Un solo degradé violeta → magenta → rosa como firma de marca, usado con moderación (hero, botón principal, un acento). El resto de la página respira en lavanda suave y blanco papel.</p>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-color" style="background:#3B1466"></div><div class="swatch-label"><div class="swatch-name">Violeta Profundo</div><div class="swatch-hex">#3B1466</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#7C3AED"></div><div class="swatch-label"><div class="swatch-name">Morado Vívido</div><div class="swatch-hex">#7C3AED</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#C026D3"></div><div class="swatch-label"><div class="swatch-name">Magenta</div><div class="swatch-hex">#C026D3</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#EC4899"></div><div class="swatch-label"><div class="swatch-name">Rosa Eléctrico</div><div class="swatch-hex">#EC4899</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F3E8FF"></div><div class="swatch-label"><div class="swatch-name">Lavanda Suave</div><div class="swatch-hex">#F3E8FF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFFDFB; border-bottom:1px solid #eee"></div><div class="swatch-label"><div class="swatch-name">Blanco Papel</div><div class="swatch-hex">#FFFDFB</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><h2>Tipografía</h2></div>
+    <p class="sec-sub">Dos familias, roles claros: una display redondeada con carácter para títulos, y una sans neutra y muy legible para el cuerpo de texto.</p>
+    <div class="type-card">
+      <div class="type-role">DISPLAY — TÍTULOS Y BOTONES</div>
+      <div class="type-display">Baloo 2 — Aa Bb Cc 123</div>
+      <div class="type-meta">Redondeada, amigable pero segura de sí misma. Evita sonar infantil gracias a su peso 700–800.</div>
+      <div class="type-role" style="margin-top:26px;">TEXTO — CUERPO Y NAVEGACIÓN</div>
+      <div class="type-body-sample" style="font-family:'Inter'; font-weight:600; font-size:20px;">Inter — Aa Bb Cc 123</div>
+      <div class="type-body-sample">Este taller es para chicas curiosas que quieren construir su primer proyecto de código, sin importar si nunca programaron antes.</div>
+      <div class="logo-note">
+        <div class="logo-sample">Código Morado</div>
+        <p>El trazo tipo pincel del logo original se reserva solo para el wordmark — no se repite en los títulos de sección, para que no compita con Baloo 2.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><h2>Iconografía y motivos</h2></div>
+    <p class="sec-sub">Elementos tomados directamente de la placa original: brackets de código, puntos-conector y líneas de circuito, para usar como separadores y detalles — no como relleno decorativo.</p>
+    <div class="motif-grid">
+      <div class="motif-card"><div class="motif-icon">&lt;/&gt;</div><h3>Brackets de código</h3><p>Como marcador de sección o antes de un dato técnico (agenda, requisitos).</p></div>
+      <div class="motif-card"><div class="motif-icon">{ }</div><h3>Llaves</h3><p>Para encerrar cifras clave: cupos, duración, nivel.</p></div>
+      <div class="motif-card"><div class="motif-icon">●–●</div><h3>Puntos conectores</h3><p>Como los de la placa: marcan transiciones entre bloques del one-page.</p></div>
+    </div>
+    <div class="circuit-strip"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Componentes de interfaz</h2></div>
+    <p class="sec-sub">Cómo se ven botones, chips y el campo "Nombre" heredado de la placa, ya traducidos a componentes web reutilizables.</p>
+    <div class="ui-grid">
+      <div class="ui-card">
+        <div class="ui-label">BOTONES</div>
+        <a class="btn-primary">Reservar mi cupo</a>
+        <a class="btn-ghost">Ver programa</a>
+        <div class="ui-label" style="margin-top:26px;">ETIQUETAS</div>
+        <span class="chip">Sin experiencia previa</span>
+        <span class="chip">12–17 años</span>
+        <span class="chip">Gratuito</span>
+      </div>
+      <div class="badge-repro">
+        <div class="badge-repro-top">Taller de Programación</div>
+        <div class="badge-repro-body">
+          <div class="ui-label">CAMPO DE FORMULARIO — inspirado en la placa</div>
+          <div class="name-field">Nombre: ______________</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none;">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Tono de voz</h2></div>
+    <p class="sec-sub">El copy debe hablarle a la participante como alguien capaz, no como una principiante que hay que convencer.</p>
+    <div class="tone-grid">
+      <div class="tone-col si">
+        <h3>Sí</h3>
+        <ul>
+          <li>Directo y cercano: "Vas a construir tu primera app"</li>
+          <li>Trata la tecnología como algo alcanzable</li>
+          <li>Usa datos concretos (duración, cupos, nivel)</li>
+          <li>Celebra la comunidad ("con otras chicas que arrancan igual que vos")</li>
+        </ul>
+      </div>
+      <div class="tone-col no">
+        <h3>No</h3>
+        <ul>
+          <li>Diminutivos o tono infantilizante</li>
+          <li>Frases motivacionales genéricas sin contenido</li>
+          <li>Jerga técnica sin explicar</li>
+          <li>Prometer resultados poco realistas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Moodboard v1 · Código Morado · base para el desarrollo del one-page</footer>
+</div>
+</body>
+</html>
