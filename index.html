@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código Morado — Taller de Programación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Código Morado</div>
+    <ul class="nav-links">
+      <li><a href="#objetivos">Objetivos</a></li>
+      <li><a href="#kahoot">Kahoot</a></li>
+      <li><a href="#scratch">Scratch</a></li>
+      <li><a href="#recursero">Recursero</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>Código Morado</h1>
+    <p>Chicas programando futuro</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- BLOQUE 1 — OBJETIVOS -->
+  <section id="objetivos">
+    <div class="sec-head">
+      <div class="sec-num">01</div>
+      <h2>Objetivos del taller</h2>
+      <p>Qué nos proponemos lograr juntas durante el encuentro. Editá esta lista según el contenido definitivo del taller.</p>
+    </div>
+    <ul class="objetivos-list">
+      <li><span class="obj-icon">&lt;/&gt;</span>Perder el miedo a programar y animarse a crear el primer proyecto propio.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Entender la lógica de la programación jugando, sin necesidad de experiencia previa.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Conocer herramientas reales que usan programadoras: Scratch, cuestionarios interactivos y más.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Descubrir carreras, becas y cursos para seguir formándose en tecnología.</li>
+      <li><span class="obj-icon">&lt;/&gt;</span>Conectar con otras chicas que están dando sus primeros pasos en el mundo tech.</li>
+    </ul>
+  </section>
+
+  <!-- BLOQUE 2 — KAHOOT -->
+  <section id="kahoot">
+    <div class="kahoot-block">
+      <div class="connector"><span class="dot"></span><span class="line"></span><span class="dot"></span></div>
+      <div class="kahoot-title">Kahoot</div>
+      <p class="kahoot-sub">Poné a prueba lo que aprendiste en el taller</p>
+      <!-- TODO: reemplazar href="#" por el link real del Kahoot -->
+      <a class="btn-primary" href="#" target="_blank" rel="noopener">Jugar</a>
+    </div>
+  </section>
+
+  <!-- BLOQUE 3 — SCRATCH -->
+  <section id="scratch">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2>Jugando con Scratch</h2>
+      <p>Elegí un nivel de dificultad y programá tu propio proyecto bloque a bloque.</p>
+    </div>
+    <div class="scratch-grid">
+      <div class="scratch-col">
+        <h3>Elegí tu nivel</h3>
+        <div class="niveles">
+          <!-- TODO: reemplazar cada href="#" por el link del proyecto Scratch según nivel -->
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Fácil</a>
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Intermedio</a>
+          <a class="btn-secondary" href="#" target="_blank" rel="noopener">Difícil</a>
+        </div>
+      </div>
+      <div class="scratch-col">
+        <h3>Mascota Scratch</h3>
+        <!-- Placeholder ilustrativo: reemplazar por el asset oficial del gato de Scratch -->
+        <div class="cat-wrap">
+          <img src= "scratch-cat-2.png" alt="Mascota de Scratch" width="220" height="220">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOQUE 4 — RECURSERO DIGITAL -->
+  <section id="recursero" style="border-bottom:none;">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2>Recursero digital</h2>
+      <p>Universidades con carreras de tecnología, becas y cursos gratuitos para seguir el camino después del taller.</p>
+    </div>
+
+    <div class="beca-info">
+      <span class="beca-icon">{ }</span>
+      <p><strong>Becas Progresar Superior 2026:</strong> inscripción abierta del 18 de agosto al 11 de septiembre de 2026 a través de la app Mi Argentina, para estudiar cualquier carrera universitaria, incluidas las tecnológicas.</p>
+    </div>
+
+    <h3 class="recursero-sub">Universidades con carreras en tecnología</h3>
+    <div class="uni-grid">
+      <div class="uni-card">
+        <h4>UNGS — Universidad Nacional de General Sarmiento</h4>
+        <div class="uni-loc">Los Polvorines</div>
+        <p>Tecnicatura Universitaria en Programación Informática y Licenciatura en Sistemas.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UTN — Facultad Regional Buenos Aires</h4>
+        <div class="uni-loc">Almagro, CABA</div>
+        <p>Ingeniería en Sistemas de Información y tecnicaturas en TICs.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UBA — Facultad de Ingeniería (FIUBA)</h4>
+        <div class="uni-loc">San Telmo, CABA</div>
+        <p>Ingeniería en Informática e Ingeniería en Computación.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UNLP — Facultad de Informática</h4>
+        <div class="uni-loc">La Plata</div>
+        <p>Licenciatura en Informática e Ingeniería en Computación.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+      <div class="uni-card">
+        <h4>UNQ — Universidad Nacional de Quilmes</h4>
+        <div class="uni-loc">Bernal</div>
+        <p>Ingeniería en Informática y Tecnicatura en Programación Informática.</p>
+        <span class="beca-tag">Becas propias + Progresar</span>
+      </div>
+    </div>
+
+    <h3 class="recursero-sub">Cursos y capacitaciones gratuitas</h3>
+    <div class="cursos-grid">
+      <div class="curso-card">
+        <h4>Chicas Digit@lers (CESSI)</h4>
+        <p>Talleres gratuitos y 100% online pensados para adolescentes, sin conocimientos previos: programación por bloques, apps y páginas web.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Codo a Codo</h4>
+        <p>Formación gratuita en programación Full Stack del Gobierno de la Ciudad y la Provincia de Buenos Aires, con cupos reservados para mujeres.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Argentina Programa</h4>
+        <p>Cursos gratuitos con certificación oficial del Ministerio de Economía de la Nación en programación y habilidades digitales.</p>
+      </div>
+      <div class="curso-card">
+        <h4>Google Activate</h4>
+        <p>Certificaciones digitales gratuitas de Google en habilidades de programación, datos y marketing digital.</p>
+      </div>
+    </div>
+
+    <h3 class="recursero-sub">Mapa de universidades</h3>
+    <div id="map"></div>
+    <p class="map-note">Ubicaciones aproximadas — verificar la dirección exacta de cada sede antes de publicar.</p>
+  </section>
+
+</div>
+
+<footer>Código Morado · Taller de Programación · Chicas programando futuro</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
